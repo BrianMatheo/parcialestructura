@@ -14,6 +14,44 @@ public class Matriz {
     String ubicacion[] = new String[]{"gym", "teatro", "cancha", "restaurante"};
     int datos[][] = new int[ubicacion.length][dias.length];
     
+public void buy(String documento, String nombre, String pelicula, int edad, String genero){
+        Nodo nuevo = new Nodo();
+        nuevo.setDocumento(documento);
+        nuevo.setNombre(nombre);
+        nuevo.setEdad(edad);
+        nuevo.setPelicula(pelicula);
+        nuevo.setGenero(genero);
+        nuevo.setSiguiente(null);
+        if(inicio == null){
+            inicio = nuevo;
+            JOptionPane.showMessageDialog(null, "bienvenido " + nuevo.getNombre() + " eres el primero en comprar un boleta");
+        }else{
+            JOptionPane.showMessageDialog(null, "bienvenido " + nuevo.getNombre());
+            Nodo temporal = inicio;
+            while(temporal != null){
+                temporal = temporal.getSiguiente();
+            }
+            nuevo.setSiguiente(temporal);
+        }
+}
+
+public static void cantidad(ArrayList<Registro> documentos, String documento) {
+        boolean documentoEncontrado = false;
+
+        for (int i = 0; i < documentos.size(); i++) {
+            Registro registro = documentos.get(i);
+            
+            if (registro.getDocumento().equals(documento)) {
+                documentoEncontrado = true;
+                JOptionPane.showMessageDialog(null,"El documento " + documento + " compró " + registro.getVentas());
+                break;
+            }
+        }
+        if (!documentoEncontrado) {
+            JOptionPane.showMessageDialog(null,"No se encontró el documento: " + documento);
+        }
+    }
+   
 public void cantStudent(){
     for(int i = 0; i<ubicacion.length; i++){
         for(int j = 0; j<dias.length; j++){
@@ -167,6 +205,5 @@ public void estadistica(){
         }
     }
 }
-    
 
 

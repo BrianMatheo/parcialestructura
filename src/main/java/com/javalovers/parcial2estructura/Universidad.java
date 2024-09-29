@@ -5,6 +5,7 @@
 package com.javalovers.parcial2estructura;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,6 +14,11 @@ import javax.swing.JOptionPane;
 public class Universidad extends javax.swing.JFrame {
 
     Matriz obj = new Matriz();
+    int contador = 0;
+    String peliculas[] = new String[]{"joker", "deadpool", "sonic"};
+    String concatpeli = "\n";
+    int vendidas[] = new int[3];
+    ArrayList <Registro> documentos = new ArrayList();
     public Universidad() {
         initComponents();
     }
@@ -31,6 +37,9 @@ public class Universidad extends javax.swing.JFrame {
         Consult = new javax.swing.JButton();
         Estadisticas = new javax.swing.JButton();
         Selection = new javax.swing.JButton();
+        Cartelera = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        EntradasCompradas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +76,27 @@ public class Universidad extends javax.swing.JFrame {
             }
         });
 
+        Cartelera.setText("Cartelera");
+        Cartelera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarteleraActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Comprar Entrada");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        EntradasCompradas.setText("Entradas Compradas");
+        EntradasCompradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EntradasCompradasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,15 +104,20 @@ public class Universidad extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(173, 173, 173)
                 .addComponent(jLabel1)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(203, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Cartelera)
+                    .addComponent(jButton1)
+                    .addComponent(EntradasCompradas))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Selection)
                     .addComponent(Consult)
                     .addComponent(Estadisticas)
                     .addComponent(CantStudent))
-                .addGap(18, 18, 18))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,11 +125,17 @@ public class Universidad extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(CantStudent)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CantStudent)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(Consult)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Consult)
+                    .addComponent(Cartelera))
                 .addGap(18, 18, 18)
-                .addComponent(Estadisticas)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Estadisticas)
+                    .addComponent(EntradasCompradas))
                 .addGap(18, 18, 18)
                 .addComponent(Selection)
                 .addContainerGap(103, Short.MAX_VALUE))
@@ -121,6 +162,56 @@ public class Universidad extends javax.swing.JFrame {
     private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
         obj.selection(JOptionPane.showInputDialog(null, "escriba que escenario desea saber \n gym \n teatro \n cancha \n restaurante"));
     }//GEN-LAST:event_SelectionActionPerformed
+
+    private void CarteleraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarteleraActionPerformed
+    for(int i = 0; i<peliculas.length;i++){
+    JOptionPane.showMessageDialog(null, peliculas[i] + " = " + vendidas[i]);
+    }
+    }//GEN-LAST:event_CarteleraActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    if(contador == 0){
+        for(int i = 0; i<peliculas.length;i++){
+        concatpeli += peliculas[i] + "\n";
+    }
+        contador = 1;
+    }
+    String pelicula = JOptionPane.showInputDialog(null,"ingrese cual pelicula quiere ver" + concatpeli);
+    String documento = JOptionPane.showInputDialog(null,"ingrese su documento");
+    for(int i = 0;i<peliculas.length;i++){
+            if(pelicula.equals(peliculas[i])){
+                vendidas[i] += 1;
+                JOptionPane.showMessageDialog(null, "compra realizada");
+                break;
+            }else if(i==2){
+                JOptionPane.showMessageDialog(null,"no está esa pelicula, saliendo");
+                return;
+            }
+            }
+        obj.buy(documento,
+                JOptionPane.showInputDialog(null,"ingrese su nombre"),
+                pelicula,
+                Integer.parseInt(JOptionPane.showInputDialog(null,"ingrese su edad")),
+                JOptionPane.showInputDialog(null,"ingrese su genero")
+        );
+        boolean search = false;
+        for(int i = 0;i<documentos.size();i++){
+            Registro registro = documentos.get(i);
+            if(registro.getDocumento().equals(documento)){
+                registro.cantidades();
+                search = true;
+                break;
+            }
+        }
+        if(!search){
+            documentos.add(new Registro(documento));
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void EntradasCompradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EntradasCompradasActionPerformed
+        obj.cantidad(documentos,JOptionPane.showInputDialog("diga su documento"));
+    }//GEN-LAST:event_EntradasCompradasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,12 +247,14 @@ public class Universidad extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CantStudent;
+    private javax.swing.JButton Cartelera;
     private javax.swing.JButton Consult;
+    private javax.swing.JButton EntradasCompradas;
     private javax.swing.JButton Estadisticas;
     private javax.swing.JButton Selection;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

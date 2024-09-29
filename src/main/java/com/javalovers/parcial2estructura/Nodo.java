@@ -2,17 +2,31 @@ package com.javalovers.parcial2estructura;
 public class Nodo {
 
     /**
-     * @return the enlace
+     * @return the cantidad
      */
-    public Nodo getEnlace() {
-        return enlace;
+    public int getCantidad() {
+        return cantidad;
     }
 
     /**
-     * @param enlace the enlace to set
+     * @param cantidad the cantidad to set
      */
-    public void setEnlace(Nodo enlace) {
-        this.enlace = enlace;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    /**
+     * @return the pelicula
+     */
+    public String getPelicula() {
+        return pelicula;
+    }
+
+    /**
+     * @param pelicula the pelicula to set
+     */
+    public void setPelicula(String pelicula) {
+        this.pelicula = pelicula;
     }
 
     /**
@@ -30,106 +44,82 @@ public class Nodo {
     }
 
     /**
-     * @return the lunes
+     * @return the documento
      */
-    public int getLunes() {
-        return lunes;
+    public String getDocumento() {
+        return documento;
     }
 
     /**
-     * @param lunes the lunes to set
+     * @param documento the documento to set
      */
-    public void setLunes(int lunes) {
-        this.lunes = lunes;
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 
     /**
-     * @return the martes
+     * @return the edad
      */
-    public int getMartes() {
-        return martes;
+    public int getEdad() {
+        return edad;
     }
 
     /**
-     * @param martes the martes to set
+     * @param edad the edad to set
      */
-    public void setMartes(int martes) {
-        this.martes = martes;
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     /**
-     * @return the miercoles
+     * @return the genero
      */
-    public int getMiercoles() {
-        return miercoles;
+    public String getGenero() {
+        return genero;
     }
 
     /**
-     * @param miercoles the miercoles to set
+     * @param genero the genero to set
      */
-    public void setMiercoles(int miercoles) {
-        this.miercoles = miercoles;
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     /**
-     * @return the jueves
+     * @return the siguiente
      */
-    public int getJueves() {
-        return jueves;
+    public Nodo getSiguiente() {
+        return siguiente;
     }
 
     /**
-     * @param jueves the jueves to set
+     * @param siguiente the siguiente to set
      */
-    public void setJueves(int jueves) {
-        this.jueves = jueves;
+    public void setSiguiente(Nodo siguiente) {
+        this.siguiente = siguiente;
     }
 
-    /**
-     * @return the viernes
-     */
-    public int getViernes() {
-        return viernes;
-    }
-
-    /**
-     * @param viernes the viernes to set
-     */
-    public void setViernes(int viernes) {
-        this.viernes = viernes;
-    }
-
-    /**
-     * @return the sabado
-     */
-    public int getSabado() {
-        return sabado;
-    }
-
-    /**
-     * @param sabado the sabado to set
-     */
-    public void setSabado(int sabado) {
-        this.sabado = sabado;
-    }
-
-    public Nodo(String nombre, int lunes, int martes, int miercoles, int jueves, int viernes, int sabado) {
+    public Nodo(String documento, String nombre, String pelicula, int edad, String genero) {
+        this.documento = documento;
         this.nombre = nombre;
-        this.lunes = lunes;
-        this.martes = martes;
-        this.miercoles = miercoles;
-        this.jueves = jueves;
-        this.viernes = viernes;
-        this.sabado = sabado;
+        this.pelicula = pelicula;
+        this.edad = edad;
+        this.genero = genero;
+    }
+    public Nodo(){
     }
     
+    public Nodo(String documento){
+        this.documento = documento;
+        this.cantidad = 0;
+    }
+    
+    private String documento;
     private String nombre;
-    private int lunes;
-    private int martes;
-    private int miercoles;
-    private int jueves;
-    private int viernes;
-    private int sabado;
-    private Nodo enlace;
+    private String pelicula;
+    private int edad;
+    private String genero;
+    private Nodo siguiente;
+    private int cantidad;
     
 }
